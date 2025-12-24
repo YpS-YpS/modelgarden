@@ -34,7 +34,7 @@ The app features a beautiful splash screen and intuitive chat interface designed
 
 ```bash
 # Clone the repository
-git clone https://github.com/twinkleswain/modelgarden.git
+git clone https://github.com/YpS-YpS/modelgarden.git
 cd modelgarden
 
 # Install dependencies
@@ -50,7 +50,7 @@ Open http://localhost:5173 in your browser.
 
 ```bash
 # Clone the repository
-git clone https://github.com/twinkleswain/modelgarden.git
+git clone https://github.com/YpS-YpS/modelgarden.git
 cd modelgarden
 
 # Build and run with Docker Compose
