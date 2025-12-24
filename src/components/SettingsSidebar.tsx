@@ -1,4 +1,5 @@
-import { Palette, Sparkles, SlidersHorizontal, Terminal, Wifi, WifiOff } from 'lucide-react'
+import { useState } from 'react'
+import { Palette, Sparkles, SlidersHorizontal, Terminal, Network, Unplug, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Textarea } from '@/components/ui/textarea'
@@ -24,6 +25,7 @@ const PRESETS: { id: PresetName; name: string; icon: string; desc: string }[] = 
 ]
 
 export function SettingsSidebar() {
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const {
     theme,
     setTheme,
@@ -33,8 +35,14 @@ export function SettingsSidebar() {
     applyPreset,
     resetParameters,
   } = useSettingsStore()
-  const { isConnected } = useModelStore()
+  const { isConnected, loadModels } = useModelStore()
   const { addToast } = useToast()
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    await loadModels()
+    setIsRefreshing(false)
+  }
 
   const handleThemeChange = (newTheme: Theme) => {
     setTheme(newTheme)
@@ -47,7 +55,7 @@ export function SettingsSidebar() {
   }
 
   return (
-    <aside className="w-64 bg-secondary border-l border-border flex flex-col">
+    <aside className="w-80 bg-secondary border-l border-border flex flex-col">
       <ScrollArea className="flex-1">
         <div className="p-5 space-y-6">
           {/* Theme Section */}
@@ -175,16 +183,24 @@ export function SettingsSidebar() {
         {isConnected ? (
           <>
             <div className="w-1.5 h-1.5 rounded-full bg-accent-cyan shadow-[0_0_8px_hsl(var(--accent-cyan))] animate-pulse" />
-            <Wifi className="w-3.5 h-3.5 text-accent-cyan" />
-            <span>Connected to LM Studio</span>
+            <Network className="w-3.5 h-3.5 text-accent-cyan" />
+            <span className="flex-1">Connected to Server</span>
           </>
         ) : (
           <>
             <div className="w-1.5 h-1.5 rounded-full bg-destructive" />
-            <WifiOff className="w-3.5 h-3.5 text-destructive" />
-            <span>Server offline</span>
+            <Unplug className="w-3.5 h-3.5 text-destructive" />
+            <span className="flex-1">Server offline</span>
           </>
         )}
+        <button
+          onClick={handleRefresh}
+          disabled={isRefreshing}
+          className="p-1 rounded hover:bg-white/10 transition-colors"
+          title="Refresh connection"
+        >
+          <RefreshCw className={`w-3 h-3 text-muted-foreground hover:text-foreground transition-transform ${isRefreshing ? 'animate-spin' : ''}`} />
+        </button>
       </div>
     </aside>
   )

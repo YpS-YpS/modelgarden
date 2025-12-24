@@ -256,3 +256,61 @@
 .animate-float-particle {
   animation: float-particle 4s ease-in-out infinite;
 }
+
+/* Slide in from left animation */
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out;
+}
+
+/* Slide in from right animation */
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out;
+}
+
+/* Button gradient flash on load - plays once */
+@keyframes button-gradient-flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-button-flash {
+  animation: button-gradient-flash 1.5s ease-out forwards;
+}
+
+/* Code block styles - remove default margins */
+.code-block-wrapper pre {
+  margin: 0 !important;
+}
+
+.prose pre {
+  margin: 0 !important;
+}

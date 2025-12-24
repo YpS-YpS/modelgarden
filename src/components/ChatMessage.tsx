@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import { User, Bot, Zap, Clock, Hash, Square } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Message, MessageContent, StreamMetrics } from '@/types'
@@ -14,6 +14,29 @@ export const ChatMessage = memo(function ChatMessage({
 }: ChatMessageProps) {
   const isUser = message.role === 'user'
   const content = formatContent(message.content)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  // Add copy functionality to code blocks
+  useEffect(() => {
+    if (!contentRef.current) return
+
+    const copyButtons = contentRef.current.querySelectorAll('.code-copy-btn')
+    copyButtons.forEach((btn) => {
+      const handleClick = async () => {
+        const codeBlock = btn.closest('.code-block-wrapper')?.querySelector('code')
+        if (codeBlock) {
+          await navigator.clipboard.writeText(codeBlock.textContent || '')
+          btn.innerHTML = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied'
+          btn.classList.add('text-accent-cyan')
+          setTimeout(() => {
+            btn.innerHTML = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy'
+            btn.classList.remove('text-accent-cyan')
+          }, 2000)
+        }
+      }
+      btn.addEventListener('click', handleClick)
+    })
+  }, [content.html])
 
   return (
     <div
@@ -52,6 +75,7 @@ export const ChatMessage = memo(function ChatMessage({
         ) : (
           <>
             <div
+              ref={contentRef}
               className="prose prose-invert prose-sm max-w-none"
               dangerouslySetInnerHTML={{ __html: content.html }}
             />
@@ -131,8 +155,20 @@ function formatContent(content: MessageContent): { html: string; images: string[
   // First escape all HTML
   let html = escapeHtml(text)
 
-  // Code blocks
-  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="bg-secondary rounded-lg p-3 overflow-x-auto my-3"><code class="font-mono text-xs">$2</code></pre>')
+  // Code blocks with language label and copy button
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
+    const language = lang || 'code'
+    return `<div class="code-block-wrapper my-3 rounded-lg overflow-hidden border border-border">
+      <div class="flex items-center justify-between px-3 py-2 bg-secondary/80 border-b border-border">
+        <span class="text-sm text-muted-foreground font-mono font-medium">${language}</span>
+        <button class="code-copy-btn flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre class="bg-secondary/50 p-3 overflow-x-auto m-0"><code class="font-mono text-xs">${code}</code></pre>
+    </div>`
+  })
 
   // Inline code
   html = html.replace(/`([^`]+)`/g, '<code class="bg-secondary px-1.5 py-0.5 rounded text-xs font-mono">$1</code>')

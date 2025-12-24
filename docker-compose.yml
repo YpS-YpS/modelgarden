@@ -1,17 +1,34 @@
+# =============================================================================
+# Model Garden - Docker Compose
+# =============================================================================
+# Quick start: docker-compose up -d --build
+# Access at: http://localhost:3000
+# =============================================================================
+
 version: '3.8'
 
 services:
+  # ---------------------------------------------------------------------------
+  # Production Service
+  # ---------------------------------------------------------------------------
   modelgarden:
     build:
       context: .
       dockerfile: Dockerfile
+      # Optional: Override LLM server URL at build time
+      # args:
+      #   VITE_LM_STUDIO_URL: http://your-server:1234
     container_name: modelgarden
     ports:
-      - "3000:80"
+      - "3000:80"  # Access at http://localhost:3000
     restart: unless-stopped
-    # Allow container to access host network (for LM Studio)
+
+    # Allow container to reach host machine (for LM Studio / Ollama)
+    # host.docker.internal resolves to the host IP
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+    # Health monitoring
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
       interval: 30s
@@ -19,8 +36,12 @@ services:
       retries: 3
       start_period: 5s
 
-# Development with hot reload (optional)
-# Uncomment for development
+# =============================================================================
+# Development Service (Optional)
+# =============================================================================
+# Uncomment below for hot-reload development mode
+# Run with: docker-compose up modelgarden-dev
+#
 #   modelgarden-dev:
 #     image: node:20-alpine
 #     container_name: modelgarden-dev

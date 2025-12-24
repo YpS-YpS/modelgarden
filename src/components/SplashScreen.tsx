@@ -38,26 +38,26 @@ export function SplashScreen({ onEnter }: SplashScreenProps) {
 
           {/* Top Bar */}
           <div className="flex items-center justify-end mb-auto">
-            <span className="text-white font-semibold text-lg">Intel SIV</span>
+            <span className="text-white font-semibold text-lg">Intel MMET-Gaming & AI</span>
           </div>
 
           {/* Bottom Content */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             {/* Left - Logo + Title + Tagline */}
             <div>
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-white/20 backdrop-blur flex items-center justify-center mb-6">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-white/20 backdrop-blur flex items-center justify-center mb-6 animate-slide-in-left opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                 <Sprout className="w-16 h-16 md:w-20 md:h-20 text-white" />
               </div>
-              <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black tracking-tighter leading-[0.85] text-white">
+              <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black tracking-tighter leading-[0.85] text-white animate-slide-in-left opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
                 Model
               </h1>
-              <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black tracking-tighter leading-[0.85] text-white">
+              <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black tracking-tighter leading-[0.85] text-white animate-slide-in-left opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
                 Garden.<span className="text-white/50 text-lg md:text-xl lg:text-2xl font-medium tracking-wide ml-4 align-baseline">Your local AI Playground</span>
               </h1>
             </div>
 
             {/* Right - Button */}
-            <div className="lg:self-end">
+            <div className="lg:self-end animate-slide-in-right opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
               <button
                 onClick={handleEnter}
                 className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full font-semibold text-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
