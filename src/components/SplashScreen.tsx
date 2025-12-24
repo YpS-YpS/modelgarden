@@ -43,7 +43,7 @@ export function SplashScreen({ onEnter }: SplashScreenProps) {
 
           {/* Bottom Content */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-            {/* Left - Logo Options + Big Title */}
+            {/* Left - Logo + Title + Tagline */}
             <div>
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-white/20 backdrop-blur flex items-center justify-center mb-6">
                 <Sprout className="w-16 h-16 md:w-20 md:h-20 text-white" />
@@ -52,18 +52,15 @@ export function SplashScreen({ onEnter }: SplashScreenProps) {
                 Model
               </h1>
               <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black tracking-tighter leading-[0.85] text-white">
-                Garden.
+                Garden.<span className="text-white/50 text-lg md:text-xl lg:text-2xl font-medium tracking-wide ml-4 align-baseline">Your local AI Playground</span>
               </h1>
             </div>
 
-            {/* Right - Subtitle and Button */}
-            <div className="lg:max-w-sm lg:text-right space-y-6">
-              <p className="text-white/70 text-lg md:text-xl lg:text-2xl leading-relaxed">
-                Your local AI playground. Explore, experiment, and create with powerful language models.
-              </p>
+            {/* Right - Button */}
+            <div className="lg:self-end">
               <button
                 onClick={handleEnter}
-                className="group relative inline-flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-base shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full font-semibold text-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
               >
                 <span className="absolute inset-0 bg-white transition-opacity duration-300 group-hover:opacity-0" />
                 <span
@@ -76,8 +73,8 @@ export function SplashScreen({ onEnter }: SplashScreenProps) {
                 <span className="relative z-10 text-gray-900 group-hover:text-white transition-colors duration-300">
                   Start Exploring
                 </span>
-                <span className="relative z-10 w-7 h-7 rounded-full bg-gray-900 group-hover:bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 text-white" />
+                <span className="relative z-10 w-10 h-10 rounded-full bg-gray-900 group-hover:bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 text-white" />
                 </span>
               </button>
             </div>

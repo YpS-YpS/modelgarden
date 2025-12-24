@@ -12,7 +12,16 @@
       "Bash(taskkill:*)",
       "Bash(npx eslint:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit - Model Garden for LM Studio\n\nFeatures:\n- Modern React + TypeScript + Tailwind CSS UI\n- Chat interface with streaming support\n- Model selection and management\n- Multiple theme support \\(Dark, Midnight, Cyberpunk, Forest\\)\n- Splash screen with branding\n- Docker support for deployment\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(gh repo create:*)",
+      "Bash(where:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nMake LM Studio URL configurable for Docker\n\n- API_BASE now uses VITE_LM_STUDIO_URL env variable\n- Dockerfile sets default to host.docker.internal:1234 for Docker\n- Falls back to 127.0.0.1:1234 for local development\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git reset:*)",
+      "Bash(git config:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote set-url:*)"
     ]
   }
 }
