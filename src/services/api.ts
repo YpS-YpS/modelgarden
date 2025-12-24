@@ -12,7 +12,7 @@ export type StreamChunk =
   | { type: 'content'; content: string }
   | { type: 'metrics'; metrics: StreamMetrics }
 
-const API_BASE = 'http://127.0.0.1:1234'
+const API_BASE = import.meta.env.VITE_LM_STUDIO_URL || 'http://127.0.0.1:1234'
 
 class ApiService {
   private baseUrl: string

@@ -12,6 +12,10 @@ RUN npm ci
 # Copy source files
 COPY . .
 
+# Set LM Studio URL for Docker (uses host.docker.internal to reach host machine)
+ARG VITE_LM_STUDIO_URL=http://host.docker.internal:1234
+ENV VITE_LM_STUDIO_URL=$VITE_LM_STUDIO_URL
+
 # Build the app
 RUN npm run build
 
