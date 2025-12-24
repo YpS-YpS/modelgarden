@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  modelgarden:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: modelgarden
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    # Allow container to access host network (for LM Studio)
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+# Development with hot reload (optional)
+# Uncomment for development
+#   modelgarden-dev:
+#     image: node:20-alpine
+#     container_name: modelgarden-dev
+#     working_dir: /app
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+#     ports:
+#       - "3000:3000"
+#     command: sh -c "npm install && npm run dev -- --host"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"

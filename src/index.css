@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 33% 4%;
+    --foreground: 0 0% 100%;
+    --card: 260 25% 5%;
+    --card-foreground: 0 0% 100%;
+    --primary: 260 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 20% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 260 10% 15%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 260 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-cyan: 160 75% 53%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 260 20% 15%;
+    --input: 260 25% 5%;
+    --ring: 260 100% 60%;
+    --radius: 12px;
+  }
+
+  /* Dark Theme (Default) */
+  [data-theme="dark"] {
+    --background: 260 33% 4%;
+    --foreground: 0 0% 100%;
+    --card: 260 25% 5%;
+    --card-foreground: 0 0% 100%;
+    --primary: 260 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 20% 3%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 260 20% 15%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 260 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-cyan: 160 75% 53%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 260 20% 15%;
+    --input: 260 25% 5%;
+    --ring: 260 100% 60%;
+  }
+
+  /* Midnight Theme */
+  [data-theme="midnight"] {
+    --background: 215 50% 7%;
+    --foreground: 215 50% 95%;
+    --card: 215 45% 8%;
+    --card-foreground: 215 50% 95%;
+    --primary: 215 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 45% 5%;
+    --secondary-foreground: 215 50% 95%;
+    --muted: 215 30% 20%;
+    --muted-foreground: 215 30% 50%;
+    --accent: 215 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-cyan: 165 100% 42%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 40% 18%;
+    --input: 215 45% 8%;
+    --ring: 215 100% 65%;
+  }
+
+  /* Cyberpunk Theme */
+  [data-theme="cyberpunk"] {
+    --background: 280 33% 4%;
+    --foreground: 280 20% 95%;
+    --card: 280 40% 5%;
+    --card-foreground: 280 20% 95%;
+    --primary: 320 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 40% 3%;
+    --secondary-foreground: 280 20% 95%;
+    --muted: 280 30% 15%;
+    --muted-foreground: 280 20% 55%;
+    --accent: 320 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-cyan: 170 100% 50%;
+    --destructive: 340 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 280 50% 18%;
+    --input: 280 40% 5%;
+    --ring: 320 100% 50%;
+  }
+
+  /* Forest Theme */
+  [data-theme="forest"] {
+    --background: 140 25% 5%;
+    --foreground: 140 20% 95%;
+    --card: 140 30% 6%;
+    --card-foreground: 140 20% 95%;
+    --primary: 140 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 30% 4%;
+    --secondary-foreground: 140 20% 95%;
+    --muted: 140 20% 15%;
+    --muted-foreground: 140 20% 50%;
+    --accent: 140 70% 45%;
+    --accent-foreground: 0 0% 100%;
+    --accent-cyan: 160 84% 39%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 140 30% 12%;
+    --input: 140 30% 6%;
+    --ring: 140 70% 45%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .glow {
+    box-shadow: 0 0 60px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 12px hsl(var(--accent-cyan) / 0.3);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Models section scrollbar - always visible */
+.models-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.models-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--border) / 0.3);
+  border-radius: 3px;
+}
+
+.models-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 3px;
+}
+
+.models-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Background gradient animation */
+.bg-gradient-animated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, hsl(var(--accent) / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsl(var(--accent-cyan) / 0.03) 0%, transparent 60%);
+  animation: gradient-move 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gradient-move {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(2%, 2%) rotate(1deg); }
+  66% { transform: translate(-1%, 1%) rotate(-1deg); }
+}
+
+/* Animated gradient flow for buttons */
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: -200% 50%; }
+}
+
+.animate-gradient-flow {
+  animation: gradient-flow 4s ease-in-out infinite;
+}
+
+/* Splash screen background animation */
+@keyframes splash-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Neural path flow animation */
+@keyframes flow-path {
+  0% { stroke-dasharray: 0 1000; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 500 1000; stroke-dashoffset: -250; }
+  100% { stroke-dasharray: 0 1000; stroke-dashoffset: -1000; }
+}
+
+.animate-flow-path {
+  animation: flow-path 4s ease-in-out infinite;
+}
+
+/* Floating particle animation */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-5px, -25px) scale(0.8);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(15px, -10px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle 4s ease-in-out infinite;
+}
